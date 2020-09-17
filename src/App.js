@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {createContext, useState} from "react";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import "./App.css";
+import Booking from "./Components/Booking/Booking";
+import Home from "./Components/Home/Home";
+import HotelList from "./Components/HotelList/HotelList";
+import Login from "./Components/LongIn/Login";
+import NotFound from "./Components/NotFound/NotFound";
+import PrivateRoute from "./Components/PrivateRouter/PrivateRoute";
+
+export const DetailsContext = createContext();
+export const UserDataContext = createContext();
 
 function App() {
+  const [details, setDetails] = useState({});
+  const [loggedinUser, setLoggedinUser] = useState({});
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DetailsContext.Provider value={[details, setDetails]}>
+        <UserDataContext.Provider value={[loggedinUser, setLoggedinUser]}>
+          <Router>
+            <Switch>
+              <Route path="/booking">
+                <Booking />
+              </Route>
+
+              <Route path="/login">
+                <Login />
+              </Route>
+
+              <PrivateRoute path="/hotel">
+                <HotelList />
+              </PrivateRoute>
+
+              <Route exact path="/">
+                <Home />
+              </Route>
+
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </Router>
+        </UserDataContext.Provider>
+      </DetailsContext.Provider>
     </div>
   );
 }
-
 export default App;

@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 60px;
+  padding: 7px;
+  justify-content: space-between;
+}
+.header__logo {
+  height: 100%;
+}
+.header__logo img {
+  height: 100%;
+}
+.header__search {
+  font-size: 17px;
+  padding: 10px 16px;
+  width: 330px;
+  border: 1px solid #dddfe2;
+  color: #1d2129;
+  border-radius: 6px;
+  margin: 10px;
+}
+.header__loginBtn {
+  height: 40px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  background-color: #1877f2;
+  color: white;
+  font-size: 18px;
+}
