@@ -22,9 +22,7 @@ const Login = () => {
     password: "",
   });
 
-  const storingUserDataInLocalStorage = (email) => {
-    
-  }
+
   // [START]-------Sign Up with GOOGLE---
   const hendelGoogleSignUp = (e) => {
     e.preventDefault();
