@@ -10,13 +10,16 @@ import Header from "../Header/Header";
 
 const HotelList = () => {
   const [details, setDetalis] = useContext(DetailsContext);
+
   return (
     <div>
       <Header />
       <hr />
       <div className="hotel-list">
         <div className="hotel-list__left">
-          <h2>{details.name}</h2>
+          <b>
+            <h2> &nbsp; Stay in {details.name}</h2>
+          </b>
           <HotelRoom img={img1} />
           <HotelRoom img={img2} />
           <HotelRoom img={img3} />

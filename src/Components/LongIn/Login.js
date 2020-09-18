@@ -21,6 +21,10 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const storingUserDataInLocalStorage = (email) => {
+    
+  }
   // [START]-------Sign Up with GOOGLE---
   const hendelGoogleSignUp = (e) => {
     e.preventDefault();
@@ -36,16 +40,6 @@ const Login = () => {
   };
   // [END]-------Sign Up with GOOGLE---
 
-  // [START]-------Sign Up with FACEBOOK---
-  var fbProvider = new firebase.auth.FacebookAuthProvider();
-  const hendelFacebookSignUp = () => {
-    firebase
-      .auth()
-      .signInWithPopup(fbProvider)
-      .then(function (result) {})
-      .catch(function (error) {});
-  };
-  // [END]-------Sign Up with FACEBOOK---
 
   // [START]-------Sign Up with EMAIL and PASSWORD---
   const hendelEmailPassReg = (e) => {
@@ -83,24 +77,56 @@ const Login = () => {
   };
   // [END]-------Sign In with EMAIL and PASSWORD---
 
+  // [START]-------Sign Up with FACEBOOK---
+  var fbProvider = new firebase.auth.FacebookAuthProvider();
+  const hendelFacebookSignUp = () => {
+    firebase
+      .auth()
+      .signInWithPopup(fbProvider)
+      .then(function (res) {
+        setLoggedinUser({name: res.p.displayName});
+        history.replace(from);
+      })
+      .catch(function (error) {});
+  };
+  // [END]-------Sign Up with FACEBOOK---
+
   // ----[START]---Valiting Email and password
   const hendelBlur = (e) => {
     const passwordPattern = "(?=.*[0-9])";
-
     let validate = false;
     if (e.target.name === "email") {
       validate = true;
-    } else {
-      if (e.target.value == "email") {
-        setValidationRegEx({display: "block"});
-      }
+    } else if (e.target.value == "email") {
+      setValidationRegEx({display: "block"});
     }
+
     if (e.target.name === "password" && e.target.value.match(passwordPattern)) {
       validate = true;
-    } else {
-      if (e.target.name == "password") {
-        setValidationRegEx({display: "block"});
-      }
+    } else if (e.target.name == "password") {
+      setValidationRegEx({display: "block"});
+    }
+
+    if (e.target.name === "name") {
+      validate = true;
+    }
+
+    if (validate) {
+      user[e.target.name] = e.target.value;
+    }
+  };
+
+  const hendelBlurLogin = (e) => {
+    let validate = false;
+    if (e.target.name === "email") {
+      validate = true;
+    } else if (e.target.value == "email") {
+      setValidationRegEx({display: "block"});
+    }
+    if (e.target.name === "password") {
+      validate = true;
+    } else if (e.target.name == "password") {
+      setValidationRegEx({display: "block"});
     }
     if (e.target.name === "name") {
       validate = true;
@@ -118,7 +144,6 @@ const Login = () => {
   const [validationRegEx, setValidationRegEx] = useState({
     display: "none",
   });
-
   // ----[END]---Valiting Email and password-----------
 
   // -----[START] ---toggleing Sign in and Sign UP from with useState---
@@ -156,7 +181,7 @@ const Login = () => {
                   className="login__login-field"
                   name="email"
                   placeholder="Email address"
-                  onBlur={hendelBlur}
+                  onBlur={hendelBlurLogin}
                 />
                 <span
                   style={{
@@ -173,7 +198,7 @@ const Login = () => {
                   className="login__login-field"
                   name="password"
                   placeholder="Password"
-                  onBlur={hendelBlur}
+                  onBlur={hendelBlurLogin}
                 />
                 <span
                   style={{
@@ -199,7 +224,7 @@ const Login = () => {
               </button>
             </div>
 
-            {/* --------Sign up form------ */}
+            {/* --------Sign up form----- */}
             <div className="signup" style={{display: visibleCreateAcc.signUp}}>
               <h3>Sign Up</h3>
               <hr />
@@ -221,9 +246,6 @@ const Login = () => {
                 <span style={{color: "red", display: validation.display}}>
                   email is wrong or alrady have an account..
                 </span>
-                {/* <span style={{color: "red", display: validationRegEx.display}}>
-                  email pattern in wrong
-                </span> */}
                 <br />
 
                 <input
@@ -233,9 +255,9 @@ const Login = () => {
                   placeholder="New password"
                   onBlur={hendelBlur}
                 />
-                <span style={{color: "red", display: validationRegEx.display}}>
-                  password should have at least 1 number charecter..
-                </span>
+                <small style={{color: "red", display: validationRegEx.display}}>
+                  password must contain at least one one numeric digit..
+                </small>
                 <br />
                 <input
                   className="login__login-btn"
@@ -244,6 +266,7 @@ const Login = () => {
                 />
               </form>
             </div>
+
             {/* -------log in with google------ */}
             <div onClick={hendelGoogleSignUp} className="loginWithGoogle">
               <div className="logo">
@@ -251,6 +274,7 @@ const Login = () => {
               </div>
               <div className="logo-right">Continue with Google</div>
             </div>
+
             {/* -------log in with facebook------ */}
             <div onClick={hendelFacebookSignUp} className="loginWithGoogle">
               <div className="logo">

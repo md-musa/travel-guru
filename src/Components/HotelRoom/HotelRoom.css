@@ -1,24 +1,29 @@
 .hotelRoom {
   display: flex;
-  height: 180px;
+  height: 200px;
   width: 100%;
-  background: rgb(241, 241, 241);
-  margin: 10px;
-  padding: 10px;
+  background: whitesmoke;
+  padding: 0 10px;
+  margin: 5px 0;
 }
 .hotelRoom__img {
   height: 100%;
   width: 40%;
 }
-.hotelRoom img {
+.hotelRoom__img img {
   height: 100%;
   width: 100%;
 }
+
 .hotelRoom__details {
   width: 65%;
   padding: 10px;
 }
 .star {
-  color: rgb(237, 202, 7);
+  color: #f5d113;
   font-size: 28px;
+}
+.color {
+  color: rgb(196, 196, 196);
+  margin: 0;
 }

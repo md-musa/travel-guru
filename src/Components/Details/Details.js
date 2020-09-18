@@ -4,8 +4,7 @@ import {DetailsContext} from "../../App";
 import "./Details.css";
 
 const Details = () => {
-  const [details, setDetails] = useContext(DetailsContext);
-  const {name, description} = details;
+  const [{name, description}, setDetails] = useContext(DetailsContext);
 
   return (
     <div className="details">

@@ -1,5 +1,5 @@
 import React, {createContext, useState} from "react";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import "./App.css";
 import Booking from "./Components/Booking/Booking";
 import Home from "./Components/Home/Home";
@@ -14,6 +14,7 @@ export const UserDataContext = createContext();
 function App() {
   const [details, setDetails] = useState({});
   const [loggedinUser, setLoggedinUser] = useState({});
+
   return (
     <div className="App">
       <DetailsContext.Provider value={[details, setDetails]}>

@@ -5,12 +5,13 @@ import bgImg from "../../images/Image/bgImg.png";
 import Details from "../Details/Details";
 import {Link} from "react-router-dom";
 import {DetailsContext} from "../../App";
+var backgroundImg =
+  "https://www.gannett-cdn.com/presto/2019/10/28/USAT/bf3b0340-a8b7-4600-bd67-244fa3a20d6e-p.76_Santorini_1000_PLACES.jpg?width=2560";
 
 const Booking = () => {
   const [details, setDetails] = useContext(DetailsContext);
-  const hendelBooking = () => {};
   return (
-    <div className="home" style={{backgroundImage: `url(${bgImg})`}}>
+    <div className="home" style={{backgroundImage: `url(${backgroundImg})`}}>
       <Header />
       <div className="home__slider-container">
         <div className="home__slider-left">
@@ -18,8 +19,9 @@ const Booking = () => {
         </div>
 
         <div className="home__slider-right">
+          {/* -------booking form---------- */}
           <div className="login__login-form">
-            <form className="booking__form" onSubmit={hendelBooking}>
+            <form className="booking__form">
               <span>Origin</span>
               <input
                 className="login__login-field"
@@ -45,9 +47,10 @@ const Booking = () => {
                   <input className="booking__date-field" type="date" />
                 </div>
               </div>
+
               <Link to="/hotel">
                 <input
-                  className="login__login-btn"
+                  className="login__login-btn booking_btn"
                   type="submit"
                   value="Start Booking"
                 />

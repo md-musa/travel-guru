@@ -1,20 +1,21 @@
 .hotel-list {
   display: flex;
   width: 100%;
-  height: 650px;
-  background-color: whitesmoke;
+  height: 100%;
+  padding: 10px;
 }
 
 .hotel-list__left {
-  width: 50%;
+  width: 55%;
   height: 100%;
+  margin-right: 10px;
 }
 .hotel-list__right {
-  width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 35%;
   height: 100%;
+  padding: 20px;
+  margin-top: 50px;
+  margin-left: 10px;
   border-radius: 10px;
   overflow: hidden;
 }

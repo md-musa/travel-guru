@@ -9,15 +9,15 @@ const Card = ({img, name, description}) => {
     setDetails({name: name, description: description});
   };
 
-  const [cardBorder, setCartBorder] = useState({
-    border: "none",
+  const [cardBorder, setCardBorder] = useState({
+    border: "4px solid #efc92300",
   });
 
   return (
     <div
       onClick={() => {
         hendelDetails(name, description);
-        setCartBorder({border: "4px solid rgb(239 201 35)"});
+        setCardBorder({border: "4px solid rgb(239 201 35)"});
       }}
       className="card"
       style={{backgroundImage: `url(${img})`, border: cardBorder.border}}
